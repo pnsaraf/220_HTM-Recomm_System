@@ -10,6 +10,7 @@
 #import "SignUpController.h"
 #import "PendingTaskViewController.h"
 #import "UserDetails.h"
+#import "Groups.h"
 
 @interface ViewController ()
 
@@ -35,6 +36,7 @@
     [super viewDidLoad];
     self.title = @"Login";
     
+    self.username.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"user"];
     signUpcontrlr = [[SignUpController alloc] initWithNibName:@"SignUpController" bundle:[NSBundle mainBundle]];
     
     self.username.delegate = self;
@@ -108,9 +110,13 @@
                                        
                                        
         NSError *error;
+        
+        NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+        [def setValue:self.username.text forKey:@"user"];
+        [def synchronize];
         if(![[del.managedObjectContext executeFetchRequest:fetchRequest error:&error] count]) {
             UserDetails *details = [NSEntityDescription insertNewObjectForEntityForName:@"UserDetails" inManagedObjectContext:del.managedObjectContext];
-            
+
             
             details.username = recieved[@"username"];
             details.firstname = recieved[@"firstname"];
@@ -120,8 +126,18 @@
             details.drinking = recieved[@"drinking"];
             details.smoking = recieved[@"smoking"];
             
+            NSArray *grps = recieved[@"groups"];
+            for(NSDictionary *dict in grps) {
+                Groups *group = [NSEntityDescription insertNewObjectForEntityForName:@"Groups" inManagedObjectContext:del.managedObjectContext];
+                NSString *val = [NSString stringWithFormat:@"%@",dict[@"groupId"]];
+                group.groupID = [NSNumber numberWithLong:[val longLongValue]];
+                group.groupName = dict[@"groupName"];
+            }
+            
             
             [del.managedObjectContext save:&error];
+            
+            
         }
         
         [self.actIndic stopAnimating];

@@ -29,7 +29,7 @@
     [self.window setRootViewController:self.rootContrlr];
     [self.window makeKeyAndVisible];
     
-    TaskDetails *det = [NSEntityDescription insertNewObjectForEntityForName:@"TaskDetails" inManagedObjectContext:self.managedObjectContext];
+  /*  TaskDetails *det = [NSEntityDescription insertNewObjectForEntityForName:@"TaskDetails" inManagedObjectContext:self.managedObjectContext];
     
     det.taskID = [NSNumber numberWithInt:12345];
     det.assignedTo = @"Dhara";
@@ -49,7 +49,7 @@
     
     
     NSError *error;
-    [self saveContext];
+    [self saveContext];*/
     
 
     return YES;

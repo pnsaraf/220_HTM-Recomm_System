@@ -2,7 +2,7 @@
 //  TaskInfo.m
 //  HTM
 //
-//  Created by Prathamesh N. Saraf on 11/20/15.
+//  Created by Prathamesh N. Saraf on 11/29/15.
 //  Copyright (c) 2015 Prathamesh N. Saraf. All rights reserved.
 //
 
@@ -12,8 +12,8 @@
 @implementation TaskInfo
 
 @dynamic cookingPot;
-@dynamic platform;
-@dynamic cookingVessels;
+@dynamic items;
+@dynamic stove;
 @dynamic kitchenIsland;
 @dynamic kitchensink;
 @dynamic sink;

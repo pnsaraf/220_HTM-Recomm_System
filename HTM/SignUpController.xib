@@ -6,13 +6,18 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpController">
             <connections>
+                <outlet property="age" destination="7aj-7b-pvO" id="nSe-2i-Npn"/>
                 <outlet property="confirmPassword" destination="m4F-Xh-bYg" id="z6S-0A-ggp"/>
                 <outlet property="drinking" destination="CO6-h4-cEz" id="39W-rX-Qna"/>
+                <outlet property="employed" destination="d3Y-Di-HLY" id="r6K-4N-1Ea"/>
                 <outlet property="firstName" destination="nqa-Qp-Y6k" id="B0k-71-scI"/>
                 <outlet property="foodChoice" destination="onp-wY-K5k" id="6cN-nE-yg7"/>
+                <outlet property="gender" destination="R02-3s-pQv" id="b0l-KE-PDb"/>
                 <outlet property="lastName" destination="o4P-DJ-tmL" id="NM1-zw-Ney"/>
+                <outlet property="location" destination="Lh1-Nu-AN6" id="5mR-Vx-MDm"/>
                 <outlet property="masterScrollView" destination="awg-wG-SCK" id="ie5-kk-aI4"/>
                 <outlet property="meateaters" destination="ZQF-o9-uYo" id="51R-Fn-0jg"/>
+                <outlet property="occupation" destination="td2-zA-M4c" id="VM5-mW-XsP"/>
                 <outlet property="password" destination="Vxi-LG-SSr" id="Kqh-yl-wkH"/>
                 <outlet property="smoking" destination="ggF-pR-Qli" id="eeS-k9-ucq"/>
                 <outlet property="userName" destination="dqZ-h8-a71" id="bIF-eF-jzi"/>
@@ -25,7 +30,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="awg-wG-SCK">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="995"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2wd-KM-XZK">
                             <rect key="frame" x="30" y="33" width="84" height="21"/>
@@ -122,7 +127,7 @@
                             </connections>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IS6-Md-eD2">
-                            <rect key="frame" x="99" y="688" width="177" height="30"/>
+                            <rect key="frame" x="99" y="944" width="177" height="30"/>
                             <state key="normal" title="Register">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -146,6 +151,30 @@
                                 <outlet property="delegate" destination="-1" id="c3r-b9-Kus"/>
                             </connections>
                         </textField>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R02-3s-pQv">
+                            <rect key="frame" x="186" y="673" width="166" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="JI5-CA-rD6"/>
+                            </connections>
+                        </textField>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="td2-zA-M4c">
+                            <rect key="frame" x="186" y="721" width="166" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="vd9-zS-Pt2"/>
+                            </connections>
+                        </textField>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lh1-Nu-AN6">
+                            <rect key="frame" x="186" y="827" width="166" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="Thh-21-5Hg"/>
+                            </connections>
+                        </textField>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="ggF-pR-Qli">
                             <rect key="frame" x="208" y="518" width="123" height="29"/>
                             <segments>
@@ -160,12 +189,57 @@
                                 <segment title="NO"/>
                             </segments>
                         </segmentedControl>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="d3Y-Di-HLY">
+                            <rect key="frame" x="208" y="779" width="123" height="29"/>
+                            <segments>
+                                <segment title="YES"/>
+                                <segment title="NO"/>
+                            </segments>
+                        </segmentedControl>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gender" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fi-oD-a8P">
+                            <rect key="frame" x="30" y="677" width="57" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Occupation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pxF-IF-d3O">
+                            <rect key="frame" x="30" y="725" width="89" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Employed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="isw-NX-Xhw">
+                            <rect key="frame" x="30" y="782" width="77" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1og-i3-oMP">
+                            <rect key="frame" x="30" y="831" width="67" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Age" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oW1-0H-ESY">
+                            <rect key="frame" x="31" y="871" width="31" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7aj-7b-pvO">
+                            <rect key="frame" x="186" y="867" width="166" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="7kp-g8-uLH"/>
+                            </connections>
+                        </textField>
                     </subviews>
                 </scrollView>
             </subviews>
             <color key="backgroundColor" red="0.75654987370000004" green="0.75654987370000004" blue="0.75654987370000004" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <point key="canvasLocation" x="281.5" y="315.5"/>
+            <point key="canvasLocation" x="196.5" y="260.5"/>
         </view>
     </objects>
 </document>

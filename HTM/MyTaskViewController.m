@@ -1,19 +1,26 @@
 //
-//  GroupsViewController.m
+//  MyTaskViewController.m
 //  HTM
 //
-//  Created by Prathamesh N. Saraf on 11/22/15.
+//  Created by Prathamesh N. Saraf on 11/29/15.
 //  Copyright (c) 2015 Prathamesh N. Saraf. All rights reserved.
 //
 
-#import "GroupsViewController.h"
-#import "Groups.h"
+#import "MyTaskViewController.h"
+#import "TaskDetails.h"
+#import "AppDelegate.h"
+#import "PendingTaskTableViewCell.h"
+#import "TaskForReviewViewController.h"
 
-@interface GroupsViewController ()
+@interface MyTaskViewController ()
+
+
+@property (strong,nonatomic) NSFetchedResultsController *fetchResultsController;
 
 @end
 
-@implementation GroupsViewController
+@implementation MyTaskViewController
+
 
 -(NSFetchedResultsController *)fetchResultsController
 {
@@ -25,12 +32,15 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"Groups" inManagedObjectContext:del.managedObjectContext];
+                                   entityForName:@"TaskDetails" inManagedObjectContext:del.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     NSSortDescriptor *sort = [[NSSortDescriptor alloc]
-                              initWithKey:@"groupID" ascending:NO];
+                              initWithKey:@"taskID" ascending:NO];
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.review = 0 && SELF.assignedTo = %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"user"]];
+    [fetchRequest setPredicate:pred];
     
     [fetchRequest setFetchBatchSize:20];
     
@@ -44,30 +54,33 @@
     return _fetchResultsController;
 }
 
+
+-(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if(self) {
+        
+    }
+    
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    [self.groupsTable registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
     NSError *error;
     if(![[self fetchResultsController] performFetch:&error]) {
         NSLog(@"Error in fecthing data");
     }
     
-    self.groupsTable.backgroundColor = [UIColor clearColor];
+    [self.mytasktable registerNib:[UINib nibWithNibName:@"PendingTaskTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"Cell"];
     
-    UIBarButtonItem *logout = [[UIBarButtonItem alloc] initWithTitle:@"Create" style:UIBarButtonItemStylePlain target:self action:@selector(createGroupTapped:)];
-    self.navigationItem.rightBarButtonItem = logout;
+    self.mytasktable.backgroundColor = [UIColor clearColor];
     
-    self.title = @"Groups info";
+    self.title = @"My tasks";
 }
-
-
--(void)createGroupTapped:(UIBarButtonItem *)button
-{
-    
-}
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -84,7 +97,6 @@
 }
 */
 
-
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -96,24 +108,27 @@
     return [sectInfo numberOfObjects];
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+-(PendingTaskTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    PendingTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     if(!cell) {
-        cell = [[UITableViewCell alloc] init];
+        cell = [[PendingTaskTableViewCell alloc] init];
     }
     
-    cell.backgroundColor = [UIColor clearColor];
-    Groups *det = [self.fetchResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = det.groupName;
+    TaskDetails *det = [self.fetchResultsController objectAtIndexPath:indexPath];
+    cell.task.text = [NSString stringWithFormat:@"Task: %@",det.taskname];
+    cell.assignment.text = [NSString stringWithFormat:@"Assigned To:%@   Assigned By:%@",det.assignedTo,det.assignedBy];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   
+    TaskDetails *det = [self.fetchResultsController objectAtIndexPath:indexPath];
+    
+    TaskForReviewViewController *taskRev = [[TaskForReviewViewController alloc] initWithNibName:@"TaskForReviewViewController" bundle:[NSBundle mainBundle] withObj:det forReview:NO];
+    
+    [self.navigationController pushViewController:taskRev animated:YES];
 }
-
 
 @end

@@ -2,7 +2,7 @@
 //  TaskDetails.m
 //  HTM
 //
-//  Created by Prathamesh N. Saraf on 11/22/15.
+//  Created by Prathamesh N. Saraf on 11/29/15.
 //  Copyright (c) 2015 Prathamesh N. Saraf. All rights reserved.
 //
 
@@ -17,6 +17,7 @@
 @dynamic assignedBy;
 @dynamic assignedTo;
 @dynamic taskname;
+@dynamic review;
 @dynamic task;
 
 @end

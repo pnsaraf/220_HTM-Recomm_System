@@ -10,6 +10,9 @@
 #import "PendingTaskTableViewCell.h"
 #import "TaskDetails.h"
 #import "TaskForReviewViewController.h"
+#import "RecommViewController.h"
+#import "MyTaskViewController.h"
+#import "GroupsViewController.h"
 
 @interface PendingTaskViewController ()
 
@@ -45,6 +48,9 @@
                               initWithKey:@"taskID" ascending:NO];
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
     
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.review = 0 && SELF.assignedTo != %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"user"]];
+    [fetchRequest setPredicate:pred];
+    
     [fetchRequest setFetchBatchSize:20];
     
     NSFetchedResultsController *theFetchedResultsController =
@@ -57,6 +63,25 @@
     return _fetchResultsController;
 }
 
+- (IBAction)mytaskPressed:(id)sender {
+    MyTaskViewController *mytask = [[MyTaskViewController alloc] initWithNibName:@"MyTaskViewController" bundle:[NSBundle mainBundle]];
+    
+    [self.navigationController pushViewController:mytask animated:YES];
+    
+}
+
+- (IBAction)recommPressed:(id)sender {
+    RecommViewController *recomm = [[RecommViewController alloc] initWithNibName:@"RecommViewController" bundle:[NSBundle mainBundle]];
+    
+    [self.navigationController pushViewController:recomm animated:YES];
+}
+
+- (IBAction)groupsTapped:(id)sender {
+    GroupsViewController *grps = [[GroupsViewController alloc] initWithNibName:@"GroupsViewController" bundle:[NSBundle mainBundle]];
+    
+    [self.navigationController pushViewController:grps animated:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -65,6 +90,7 @@
     if(![[self fetchResultsController] performFetch:&error]) {
         NSLog(@"Error in fecthing data");
     }
+    
     
     [self.taskList registerNib:[UINib nibWithNibName:@"PendingTaskTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"Cell"];
     
@@ -88,16 +114,121 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [actIndicator startAnimating];
-    [UIView animateWithDuration:3 animations:^(void){
-        [actIndicator stopAnimating];
+    if(![[[_fetchResultsController sections] objectAtIndex:0] numberOfObjects]) {
+        [actIndicator startAnimating];
+        [self getTaskListFromDatabase];
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    [actIndicator stopAnimating];
+    NSLog([error description]);
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSLog(@"finished loading");
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
+{
+    NSMutableArray *recieved = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
+    AppDelegate *del = [UIApplication sharedApplication].delegate;
+    __block BOOL needRefresh = FALSE;
+
+    NSFetchRequest *req = [[NSFetchRequest alloc] init];
+    [req setEntity:[NSEntityDescription entityForName:@"TaskDetails" inManagedObjectContext:del.managedObjectContext]];
+    
+    [req setFetchBatchSize:20];
+    NSError *error;
+    NSArray *arr = [del.managedObjectContext executeFetchRequest:req error:&error];
+    
+    [recieved enumerateObjectsUsingBlock:^(NSDictionary *obj,NSUInteger index,BOOL *stop){
+        if(![arr count]||![[arr filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.taskID = %@",obj[@"taskId"]]] count]) {
+            TaskDetails *det = [NSEntityDescription insertNewObjectForEntityForName:@"TaskDetails" inManagedObjectContext:del.managedObjectContext];
+            NSString *val = [NSString stringWithFormat:@"%@",obj[@"taskId"]];
+            det.taskID = [NSNumber numberWithLong:[val longLongValue]];
+            det.assignedTo = obj[@"assignedTo"];
+            det.assignedBy = obj[@"assignedBy"];
+            det.taskCategory = obj[@"taskCategory"];
+            det.taskname = obj[@"taskName"];
+            det.review = obj[@"review"];
+            
+            needRefresh = TRUE;
+            
+        } else if ([[arr filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.taskID = %@",obj[@"taskId"]]] count]) {
+            
+        }
     }];
+    
+    
+    if(needRefresh) {
+        [del saveContext];
+        
+        self.fetchResultsController = nil;
+        NSError *error;
+        [self.fetchResultsController performFetch:&error];
+        [self.taskList reloadData];
+    }
+    
+    [actIndicator stopAnimating];
+    [refcontrol endRefreshing];
+    
+    
+}
+
+
+-(void)getTaskListFromDatabase
+{
+    if(request) {
+        request = nil;
+    }
+    
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.resultType = NSDictionaryResultType;
+    AppDelegate *del = [UIApplication sharedApplication].delegate;
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Groups" inManagedObjectContext:del.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc]
+                              initWithKey:@"groupID" ascending:YES];
+    
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
+    [fetchRequest setFetchBatchSize:20];
+
+    NSError *error;
+    NSArray *groups = [del.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    NSData *data = [NSJSONSerialization dataWithJSONObject:groups options:NSJSONWritingPrettyPrinted error:&error];
+    
+    
+    NSString *values = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSString *reqBody = [NSString stringWithFormat:@"{\"groups\":%@}",values];
+    NSData *postData = [reqBody dataUsingEncoding:NSUTF8StringEncoding];
+    
+    request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost:8081/getTaskList"]];
+    
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    [request setHTTPBody:postData];
+    [request setValue:[NSString stringWithFormat:@"%lu",(unsigned long)[reqBody length]] forHTTPHeaderField:@"Content-length"];
+    
+    NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [con start];
 }
 
 -(void)logoutTapped:(UIBarButtonItem *)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
 /*
 #pragma mark - Navigation
 
@@ -116,7 +247,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id sectInfo =[[_fetchResultsController sections] objectAtIndex:section];
+    id sectInfo =[[self.fetchResultsController sections] objectAtIndex:section];
     return [sectInfo numberOfObjects];
 }
 
@@ -128,15 +259,16 @@
         cell = [[PendingTaskTableViewCell alloc] init];
     }
     
-    TaskDetails *det = [_fetchResultsController objectAtIndexPath:indexPath];
-    cell.task.text = [NSString stringWithFormat:@"Task: %@",det.taskID];
+    TaskDetails *det = [self.fetchResultsController objectAtIndexPath:indexPath];
+    cell.task.text = [NSString stringWithFormat:@"Task: %@",det.taskname];
+    cell.assignment.text = [NSString stringWithFormat:@"Assigned To:%@   Assigned By:%@",det.assignedTo,det.assignedBy];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TaskDetails *det = [_fetchResultsController objectAtIndexPath:indexPath];
-    TaskForReviewViewController *task = [[TaskForReviewViewController alloc] initWithNibName:@"TaskForReviewViewController" bundle:[NSBundle mainBundle] withObj:det];
+    TaskDetails *det = [self.fetchResultsController objectAtIndexPath:indexPath];
+    TaskForReviewViewController *task = [[TaskForReviewViewController alloc] initWithNibName:@"TaskForReviewViewController" bundle:[NSBundle mainBundle] withObj:det forReview:YES];
     
     [self.navigationController pushViewController:task animated:YES];
 }
@@ -145,6 +277,6 @@
 -(void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     NSLog(@"It ends");
-    [refcontrol endRefreshing];
+    [self getTaskListFromDatabase];
 }
 @end

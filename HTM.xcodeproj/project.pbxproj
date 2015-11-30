@@ -25,13 +25,20 @@
 		32EE0D281BFFABF200E072F3 /* TaskForReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EE0D261BFFABF200E072F3 /* TaskForReviewViewController.xib */; };
 		32EE0D2E1C00198600E072F3 /* blackStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 32EE0D2C1C00198600E072F3 /* blackStar.png */; };
 		32EE0D2F1C00198600E072F3 /* whiteStart.png in Resources */ = {isa = PBXBuildFile; fileRef = 32EE0D2D1C00198600E072F3 /* whiteStart.png */; };
-		32EE0D3B1C00548F00E072F3 /* TaskInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EE0D3A1C00548F00E072F3 /* TaskInfo.m */; };
-		32EE0D411C01B20300E072F3 /* TaskDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EE0D401C01B20300E072F3 /* TaskDetails.m */; };
 		32EE0D451C01B9FF00E072F3 /* CreateTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EE0D431C01B9FF00E072F3 /* CreateTaskViewController.m */; };
 		32EE0D461C01B9FF00E072F3 /* CreateTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EE0D441C01B9FF00E072F3 /* CreateTaskViewController.xib */; };
 		32EE0D491C028D1D00E072F3 /* UserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EE0D481C028D1D00E072F3 /* UserDetails.m */; };
 		32EE0D4D1C02CE9F00E072F3 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EE0D4B1C02CE9F00E072F3 /* GroupsViewController.m */; };
 		32EE0D4E1C02CE9F00E072F3 /* GroupsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EE0D4C1C02CE9F00E072F3 /* GroupsViewController.xib */; };
+		32EE0D521C09341700E072F3 /* RecommViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EE0D501C09341600E072F3 /* RecommViewController.m */; };
+		32EE0D531C09341700E072F3 /* RecommViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EE0D511C09341600E072F3 /* RecommViewController.xib */; };
+		32EE0D571C09780F00E072F3 /* UserDetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EE0D551C09780F00E072F3 /* UserDetViewController.m */; };
+		32EE0D581C09780F00E072F3 /* UserDetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EE0D561C09780F00E072F3 /* UserDetViewController.xib */; };
+		32EE0D5B1C0BA68400E072F3 /* TaskInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EE0D5A1C0BA68400E072F3 /* TaskInfo.m */; };
+		32EE0D5E1C0BD71600E072F3 /* TaskDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EE0D5D1C0BD71600E072F3 /* TaskDetails.m */; };
+		32EE0D621C0BE2B800E072F3 /* MyTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EE0D601C0BE2B800E072F3 /* MyTaskViewController.m */; };
+		32EE0D631C0BE2B800E072F3 /* MyTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EE0D611C0BE2B800E072F3 /* MyTaskViewController.xib */; };
+		32EE0D661C0BF8F500E072F3 /* Groups.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EE0D651C0BF8F500E072F3 /* Groups.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,10 +80,6 @@
 		32EE0D261BFFABF200E072F3 /* TaskForReviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskForReviewViewController.xib; sourceTree = "<group>"; };
 		32EE0D2C1C00198600E072F3 /* blackStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackStar.png; sourceTree = "<group>"; };
 		32EE0D2D1C00198600E072F3 /* whiteStart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteStart.png; sourceTree = "<group>"; };
-		32EE0D391C00548F00E072F3 /* TaskInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskInfo.h; sourceTree = "<group>"; };
-		32EE0D3A1C00548F00E072F3 /* TaskInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskInfo.m; sourceTree = "<group>"; };
-		32EE0D3F1C01B20300E072F3 /* TaskDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDetails.h; sourceTree = "<group>"; };
-		32EE0D401C01B20300E072F3 /* TaskDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetails.m; sourceTree = "<group>"; };
 		32EE0D421C01B9FF00E072F3 /* CreateTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTaskViewController.h; sourceTree = "<group>"; };
 		32EE0D431C01B9FF00E072F3 /* CreateTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTaskViewController.m; sourceTree = "<group>"; };
 		32EE0D441C01B9FF00E072F3 /* CreateTaskViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTaskViewController.xib; sourceTree = "<group>"; };
@@ -85,6 +88,21 @@
 		32EE0D4A1C02CE9E00E072F3 /* GroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
 		32EE0D4B1C02CE9F00E072F3 /* GroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
 		32EE0D4C1C02CE9F00E072F3 /* GroupsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupsViewController.xib; sourceTree = "<group>"; };
+		32EE0D4F1C09341600E072F3 /* RecommViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommViewController.h; sourceTree = "<group>"; };
+		32EE0D501C09341600E072F3 /* RecommViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommViewController.m; sourceTree = "<group>"; };
+		32EE0D511C09341600E072F3 /* RecommViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommViewController.xib; sourceTree = "<group>"; };
+		32EE0D541C09780F00E072F3 /* UserDetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetViewController.h; sourceTree = "<group>"; };
+		32EE0D551C09780F00E072F3 /* UserDetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetViewController.m; sourceTree = "<group>"; };
+		32EE0D561C09780F00E072F3 /* UserDetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetViewController.xib; sourceTree = "<group>"; };
+		32EE0D591C0BA68400E072F3 /* TaskInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskInfo.h; sourceTree = "<group>"; };
+		32EE0D5A1C0BA68400E072F3 /* TaskInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskInfo.m; sourceTree = "<group>"; };
+		32EE0D5C1C0BD71600E072F3 /* TaskDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDetails.h; sourceTree = "<group>"; };
+		32EE0D5D1C0BD71600E072F3 /* TaskDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetails.m; sourceTree = "<group>"; };
+		32EE0D5F1C0BE2B800E072F3 /* MyTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTaskViewController.h; sourceTree = "<group>"; };
+		32EE0D601C0BE2B800E072F3 /* MyTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTaskViewController.m; sourceTree = "<group>"; };
+		32EE0D611C0BE2B800E072F3 /* MyTaskViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyTaskViewController.xib; sourceTree = "<group>"; };
+		32EE0D641C0BF8F500E072F3 /* Groups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Groups.h; sourceTree = "<group>"; };
+		32EE0D651C0BF8F500E072F3 /* Groups.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Groups.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,7 +154,16 @@
 				32EE0D171BFEAA0A00E072F3 /* SignUpController.xib */,
 				32EE0D1B1BFF0A4400E072F3 /* PendingTaskViewController.m */,
 				32EE0D1A1BFF0A4400E072F3 /* PendingTaskViewController.h */,
+				32EE0D5F1C0BE2B800E072F3 /* MyTaskViewController.h */,
+				32EE0D601C0BE2B800E072F3 /* MyTaskViewController.m */,
+				32EE0D611C0BE2B800E072F3 /* MyTaskViewController.xib */,
 				32EE0D1C1BFF0A4400E072F3 /* PendingTaskViewController.xib */,
+				32EE0D4F1C09341600E072F3 /* RecommViewController.h */,
+				32EE0D501C09341600E072F3 /* RecommViewController.m */,
+				32EE0D511C09341600E072F3 /* RecommViewController.xib */,
+				32EE0D541C09780F00E072F3 /* UserDetViewController.h */,
+				32EE0D551C09780F00E072F3 /* UserDetViewController.m */,
+				32EE0D561C09780F00E072F3 /* UserDetViewController.xib */,
 				32EE0D241BFFABF200E072F3 /* TaskForReviewViewController.h */,
 				32EE0D251BFFABF200E072F3 /* TaskForReviewViewController.m */,
 				32EE0D261BFFABF200E072F3 /* TaskForReviewViewController.xib */,
@@ -149,15 +176,17 @@
 				32EE0CFA1BFEA22700E072F3 /* Images.xcassets */,
 				32EE0CFC1BFEA22700E072F3 /* LaunchScreen.xib */,
 				32EE0CF11BFEA22600E072F3 /* HTM.xcdatamodeld */,
+				32EE0D641C0BF8F500E072F3 /* Groups.h */,
+				32EE0D651C0BF8F500E072F3 /* Groups.m */,
+				32EE0D5C1C0BD71600E072F3 /* TaskDetails.h */,
+				32EE0D5D1C0BD71600E072F3 /* TaskDetails.m */,
+				32EE0D591C0BA68400E072F3 /* TaskInfo.h */,
+				32EE0D5A1C0BA68400E072F3 /* TaskInfo.m */,
 				32EE0D4A1C02CE9E00E072F3 /* GroupsViewController.h */,
 				32EE0D4B1C02CE9F00E072F3 /* GroupsViewController.m */,
 				32EE0D4C1C02CE9F00E072F3 /* GroupsViewController.xib */,
 				32EE0D471C028D1D00E072F3 /* UserDetails.h */,
 				32EE0D481C028D1D00E072F3 /* UserDetails.m */,
-				32EE0D3F1C01B20300E072F3 /* TaskDetails.h */,
-				32EE0D401C01B20300E072F3 /* TaskDetails.m */,
-				32EE0D391C00548F00E072F3 /* TaskInfo.h */,
-				32EE0D3A1C00548F00E072F3 /* TaskInfo.m */,
 				32EE0CEA1BFEA22400E072F3 /* Supporting Files */,
 			);
 			path = HTM;
@@ -272,12 +301,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				32EE0D1E1BFF0A4400E072F3 /* PendingTaskViewController.xib in Resources */,
+				32EE0D631C0BE2B800E072F3 /* MyTaskViewController.xib in Resources */,
 				32EE0D2F1C00198600E072F3 /* whiteStart.png in Resources */,
 				32EE0CFE1BFEA22700E072F3 /* LaunchScreen.xib in Resources */,
+				32EE0D581C09780F00E072F3 /* UserDetViewController.xib in Resources */,
 				32EE0D461C01B9FF00E072F3 /* CreateTaskViewController.xib in Resources */,
 				32EE0D231BFF0B8200E072F3 /* PendingTaskTableViewCell.xib in Resources */,
 				32EE0D281BFFABF200E072F3 /* TaskForReviewViewController.xib in Resources */,
 				32EE0D141BFEA44400E072F3 /* LoginView.xib in Resources */,
+				32EE0D531C09341700E072F3 /* RecommViewController.xib in Resources */,
 				32EE0CFB1BFEA22700E072F3 /* Images.xcassets in Resources */,
 				32EE0D4E1C02CE9F00E072F3 /* GroupsViewController.xib in Resources */,
 				32EE0D191BFEAA0A00E072F3 /* SignUpController.xib in Resources */,
@@ -299,19 +331,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32EE0D5E1C0BD71600E072F3 /* TaskDetails.m in Sources */,
 				32EE0D4D1C02CE9F00E072F3 /* GroupsViewController.m in Sources */,
-				32EE0D411C01B20300E072F3 /* TaskDetails.m in Sources */,
 				32EE0CF01BFEA22500E072F3 /* AppDelegate.m in Sources */,
+				32EE0D661C0BF8F500E072F3 /* Groups.m in Sources */,
 				32EE0D221BFF0B8200E072F3 /* PendingTaskTableViewCell.m in Sources */,
-				32EE0D3B1C00548F00E072F3 /* TaskInfo.m in Sources */,
 				32EE0CED1BFEA22500E072F3 /* main.m in Sources */,
 				32EE0D271BFFABF200E072F3 /* TaskForReviewViewController.m in Sources */,
 				32EE0D451C01B9FF00E072F3 /* CreateTaskViewController.m in Sources */,
+				32EE0D571C09780F00E072F3 /* UserDetViewController.m in Sources */,
 				32EE0D181BFEAA0A00E072F3 /* SignUpController.m in Sources */,
+				32EE0D621C0BE2B800E072F3 /* MyTaskViewController.m in Sources */,
 				32EE0CF61BFEA22600E072F3 /* ViewController.m in Sources */,
 				32EE0D491C028D1D00E072F3 /* UserDetails.m in Sources */,
 				32EE0CF31BFEA22600E072F3 /* HTM.xcdatamodeld in Sources */,
+				32EE0D5B1C0BA68400E072F3 /* TaskInfo.m in Sources */,
 				32EE0D1D1BFF0A4400E072F3 /* PendingTaskViewController.m in Sources */,
+				32EE0D521C09341700E072F3 /* RecommViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

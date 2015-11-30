@@ -15,7 +15,8 @@
 @implementation SignUpController
 
 NSMutableArray *drinkChoice;
-NSMutableArray *food;
+NSMutableArray *food, *gender;
+
 
 -(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,10 +33,13 @@ NSMutableArray *food;
     [super viewDidLoad];
     
     self.title = @"Sign Up Page";
+    
     drinkChoice = [NSMutableArray arrayWithObjects:@"NO",@"OCCASSIONAL",@"HEAVY", nil];
     food = [NSMutableArray arrayWithObjects:@"VEGETARIAN",@"NON-VEGETARIAN", nil];
+    gender = [NSMutableArray arrayWithObjects:@"MALE",@"FEMALE",nil];
+    
     CGRect frame = self.masterScrollView.bounds;
-    frame.size.height += 200;
+    frame.size.height += 500;
     [self.masterScrollView setContentSize:frame.size];
     
     
@@ -115,7 +119,7 @@ NSMutableArray *food;
         return;
     }
     
-    NSString *reqBody = [NSString stringWithFormat:@"{\"username\":\"%@\",\"password\":\"%@\",\"firstname\":\"%@\",\"lastname\":\"%@\",\"drinking\":\"%@\",\"smoking\":\"%@\",\"foodchoice\":\"%@\",\"meateaters\":\"%@\"}",self.userName.text,self.password.text,self.firstName.text,self.lastName.text,self.drinking.text,[self.smoking titleForSegmentAtIndex:self.smoking.selectedSegmentIndex],self.foodChoice.text,[self.meateaters titleForSegmentAtIndex:self.meateaters.selectedSegmentIndex]];
+    NSString *reqBody = [NSString stringWithFormat:@"{\"username\":\"%@\",\"password\":\"%@\",\"firstname\":\"%@\",\"lastname\":\"%@\",\"drinking\":\"%@\",\"smoking\":\"%@\",\"foodchoice\":\"%@\",\"meateaters\":\"%@\",\"gender\":\"%@\",\"occupation\":\"%@\",\"location\":\"%@\",\"age\":\"%@\",\"employed\":\"%@\"}",self.userName.text,self.password.text,self.firstName.text,self.lastName.text,self.drinking.text,[self.smoking titleForSegmentAtIndex:self.smoking.selectedSegmentIndex],self.foodChoice.text,[self.meateaters titleForSegmentAtIndex:self.meateaters.selectedSegmentIndex],self.gender.text,self.occupation.text,self.location.text,self.age.text,[self.employed titleForSegmentAtIndex:self.employed.selectedSegmentIndex]];
     
     NSData *postData = [reqBody dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -153,7 +157,7 @@ NSMutableArray *food;
     
     UIPickerView *picker;
     activeTextField = textField;
-    if([textField isEqual:self.drinking] || [textField isEqual:self.foodChoice]) {
+    if([textField isEqual:self.drinking] || [textField isEqual:self.foodChoice] || [textField isEqual:self.gender]) {
         picker = [[UIPickerView alloc] init];
         picker.showsSelectionIndicator = YES;
         textField.inputView = picker;
@@ -165,7 +169,7 @@ NSMutableArray *food;
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    if([textField isEqual:self.drinking] || [textField isEqual:self.foodChoice]) {
+    if([textField isEqual:self.drinking] || [textField isEqual:self.foodChoice] || [textField isEqual:self.gender]) {
         return NO;
     }
     
@@ -174,8 +178,20 @@ NSMutableArray *food;
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    NSMutableArray *array = ([activeTextField isEqual:self.drinking]) ? drinkChoice : food;
+    
+    NSMutableArray *array;
+    if([activeTextField isEqual:self.drinking]) {
+        array = drinkChoice;
+    } else if ([activeTextField isEqual:self.gender]) {
+        array = gender;
+    } else {
+        array = food;
+    }
+    
+//    NSMutableArray *array = ([activeTextField isEqual:self.drinking]) ? drinkChoice : food;
+
     activeTextField.text = [array objectAtIndex:row];
+    
 }
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
@@ -188,6 +204,8 @@ NSMutableArray *food;
         return 3;
     } else if([activeTextField isEqual:self.foodChoice]) {
         return 2;
+    } else {
+        return 2;
     }
     
     return 0;
@@ -195,7 +213,15 @@ NSMutableArray *food;
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    NSMutableArray *array = ([activeTextField isEqual:self.drinking]) ? drinkChoice : food;
+    NSMutableArray *array;
+    if([activeTextField isEqual:self.drinking]) {
+        array = drinkChoice;
+    } else if ([activeTextField isEqual:self.gender]) {
+        array = gender;
+    } else {
+        array = food;
+    }
+    
     return [array objectAtIndex:row];
 }
 

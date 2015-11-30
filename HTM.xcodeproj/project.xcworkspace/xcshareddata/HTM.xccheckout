@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>937543F7-314E-407B-851D-70FE59013BB2</string>
+	<key>IDESourceControlProjectName</key>
+	<string>project</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>1B47DD30AEAFCD148E3431BDC79285D4BD718808</key>
+		<string>https://github.com/pnsaraf/220_HTM-Recomm_System.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>HTM.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>1B47DD30AEAFCD148E3431BDC79285D4BD718808</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/pnsaraf/220_HTM-Recomm_System.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>1B47DD30AEAFCD148E3431BDC79285D4BD718808</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1B47DD30AEAFCD148E3431BDC79285D4BD718808</string>
+			<key>IDESourceControlWCCName</key>
+			<string>HTM</string>
+		</dict>
+	</array>
+</dict>
+</plist>

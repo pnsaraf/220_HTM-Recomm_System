@@ -21,6 +21,11 @@
 @property (strong, nonatomic) IBOutlet UITextField *foodChoice;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *smoking;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *meateaters;
+@property (strong, nonatomic) IBOutlet UITextField *gender;
+@property (strong, nonatomic) IBOutlet UITextField *occupation;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *employed;
+@property (strong, nonatomic) IBOutlet UITextField *location;
+@property (strong, nonatomic) IBOutlet UITextField *age;
 
 @property (strong, nonatomic) IBOutlet UITextField *confirmPassword;
 - (IBAction)registerTapped:(UIButton *)sender;

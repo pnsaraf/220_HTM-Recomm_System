@@ -10,6 +10,8 @@
 #import "TaskDetails.h"
 #import "TaskInfo.h"
 #import <objc/runtime.h>
+#import <QuartzCore/QuartzCore.h>
+#import "AppDelegate.h"
 
 @interface TaskForReviewViewController ()
 
@@ -18,12 +20,13 @@
 
 @implementation TaskForReviewViewController
 
--(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withObj:(TaskDetails *)_det
+-(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withObj:(TaskDetails *)_det forReview:(BOOL) flag
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self) {
         det = _det;
         infoAray = [[NSMutableArray alloc] init];
+        rev = flag;
     }
     
     return self;
@@ -43,33 +46,37 @@
         }
     }
     
-    [self.taskInfo registerClass:[UITableViewCell class]forCellReuseIdentifier:@"Cell"];
+    [self.taskInfo registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
 //    self.taskInfo set
     TaskInfo *info = det.task;
-    
-    unsigned int propCount =  0;
-    objc_property_t *prop = class_copyPropertyList([TaskInfo class], &propCount);
-    
-    NSMutableArray *propNames = [NSMutableArray array];
-    for(int i = 0; i < propCount ; i++) {
-        objc_property_t currProp = prop[i];
-         [propNames addObject:[NSString stringWithUTF8String:property_getName(currProp)]];
+    if(info) {
+        [self getvalues:info];
     }
     
-   infoDict = [info dictionaryWithValuesForKeys:propNames];
-    
-    NSSet *set = [infoDict keysOfEntriesPassingTest:^(id key,id obj,BOOL *stop) {
-        if([obj isKindOfClass:[NSNull class]]) {
-            return NO;
-        } else
-            return YES;
-    }];
-    
-    infoAray = [set allObjects];
     
     self.assignedTo.text = det.assignedTo;
     self.category.text = det.taskCategory;
     self.name.text = det.taskname;
+    
+    CGSize size = self.parentScrollView.frame.size;
+    //size.height += 10;
+    [self.parentScrollView setContentSize:size];
+    
+    [[self.feedback layer] setBorderColor:[UIColor blackColor].CGColor];
+    [[self.feedback layer] setBorderWidth:1.0f];
+    [[self.feedback layer] setCornerRadius:2.5f];
+    
+    if(rev) {
+        feedbacklabel.hidden = NO;
+        ratinglabel.hidden = NO;
+        self.feedback.hidden = NO;
+        
+        for(UIView *view in self.view.subviews) {
+            if([view isKindOfClass:[UIImageView class]]) {
+                view.hidden = NO;
+            }
+        }
+    }
     
 //    self.parentScrollView ca
     // Do any additional setup after loading the view from its nib.
@@ -77,6 +84,50 @@
 }
 
 
+-(void)getvalues:(TaskInfo *)info
+{
+    unsigned int propCount =  0;
+    objc_property_t *prop = class_copyPropertyList([TaskInfo class], &propCount);
+    
+    NSMutableArray *propNames = [NSMutableArray array];
+    for(int i = 0; i < propCount ; i++) {
+        objc_property_t currProp = prop[i];
+        [propNames addObject:[NSString stringWithUTF8String:property_getName(currProp)]];
+    }
+    
+    infoDict = [info dictionaryWithValuesForKeys:propNames];
+    
+    NSSet *set = [infoDict keysOfEntriesPassingTest:^(id key,id obj,BOOL *stop) {
+        if([obj isKindOfClass:[NSNull class]]) {
+            return NO;
+        } else
+        return YES;
+    }];
+    
+    infoAray = [set allObjects];
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    if(!det.task) {
+        [self.actInd startAnimating];
+        
+        NSString *reqBody = [NSString stringWithFormat:@"{\"taskId\":\"%@\"}",det.taskID];
+        
+        NSData *postData = [reqBody dataUsingEncoding:NSUTF8StringEncoding];
+        
+        request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost:8081/getTaskInfo"]];
+        
+        
+        [request setHTTPMethod:@"POST"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+        [request setHTTPBody:postData];
+        [request setValue:[NSString stringWithFormat:@"%lu",(unsigned long)[reqBody length]] forHTTPHeaderField:@"Content-length"];
+        
+        NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        [con start];
+    }
+}
 
 -(void)imageTapped:(UIGestureRecognizer *)gst
 {
@@ -136,6 +187,53 @@
     cell.backgroundColor = [UIColor clearColor];
     
     return cell;
+}
+
+
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
+{
+    NSMutableArray *recommItem = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
+    
+    
+    TaskInfo *info = [NSEntityDescription insertNewObjectForEntityForName:@"TaskInfo" inManagedObjectContext:det.managedObjectContext];
+    
+    AppDelegate *del = [UIApplication sharedApplication].delegate;
+   
+    [recommItem enumerateObjectsUsingBlock:^(NSDictionary *obj,NSUInteger ind,BOOL *stop){
+        info.items = ([obj[@"items"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"items"] ;
+        info.stove = ([obj[@"stove"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"stove"] ;
+        info.cookingPot = ([obj[@"cookingpot"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"cookingpot"] ;
+        info.kitchensink = ([obj[@"kitchensink"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"kitchensink"] ;
+        info.kitchenIsland = ([obj[@"platform"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"platform"] ;
+        info.kitchenFloor = ([obj[@"kitchenfloor"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"kitchenfloor"] ;
+        info.sink = ([obj[@"sink"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"sink"] ;
+        info.toiletSeat = ([obj[@"toiletseat"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"toiletseat"] ;
+        info.bathtub = ([obj[@"bathtub"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"bathtub"] ;
+    
+    }];
+    
+    det.task = info;
+   
+    [del saveContext];
+    [self getvalues:info];
+    
+    //        NSArray *arr = [recommItem allKeys];
+    [self.taskInfo reloadData];
+    
+    
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSLog([error description]);
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSLog(@"finished loading");
+    [self.actInd stopAnimating];
 }
 
 /*

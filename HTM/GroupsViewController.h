@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
 @interface GroupsViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UITableView *groupsTable;
+@property (strong, nonatomic) NSFetchedResultsController *fetchResultsController;
 @end
