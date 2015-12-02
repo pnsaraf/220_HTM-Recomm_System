@@ -10,6 +10,9 @@
 #import "AppDelegate.h"
 
 @interface GroupsViewController : UIViewController
+{
+    NSMutableURLRequest *request;
+}
 
 @property (strong, nonatomic) IBOutlet UITableView *groupsTable;
 @property (strong, nonatomic) NSFetchedResultsController *fetchResultsController;

@@ -65,9 +65,68 @@
 
 -(void)createGroupTapped:(UIBarButtonItem *)button
 {
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Create Group" message:@"Group Name" delegate:self cancelButtonTitle:@"Create" otherButtonTitles:@"Cancel",nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alert show];
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 0) {
+        if([[[alertView textFieldAtIndex:0] text] isEqual:@""]) {
+            [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Group name cannot be empty" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+            return;
+        }
+        
+        NSString *reqBody = [NSString stringWithFormat:@"{\"groupName\":\"%@\",\"user\":\"%@\"}",[[alertView textFieldAtIndex:0] text],[[NSUserDefaults standardUserDefaults] valueForKey:@"user"]];
+        
+        NSData *postData = [reqBody dataUsingEncoding:NSUTF8StringEncoding];
+        
+        request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost:8081/createGroup"]];
+        
+        
+        [request setHTTPMethod:@"POST"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+        [request setHTTPBody:postData];
+        [request setValue:[NSString stringWithFormat:@"%lu",(unsigned long)[reqBody length]] forHTTPHeaderField:@"Content-length"];
+        
+        NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        [con start];
+    }
     
 }
 
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
+{
+    NSDictionary *received = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
+    AppDelegate *del = [UIApplication sharedApplication].delegate;
+    
+    if([received[@"createGroup"] isEqual:@"SUCCESS"]) {
+        Groups *grp = [NSEntityDescription insertNewObjectForEntityForName:@"Groups" inManagedObjectContext:del.managedObjectContext];
+        grp.groupID = [NSNumber numberWithLongLong:[received[@"groupId"] longLongValue]];
+        grp.groupName = received[@"groupName"];
+        
+        [del saveContext];
+        self.fetchResultsController = nil;
+        
+        NSError *error;
+        [[self fetchResultsController] performFetch:&error];
+        [self.groupsTable reloadData];
+    }
+    
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSLog([error description]);
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSLog(@"finished loading");
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -2,7 +2,7 @@
 //  TaskDetails.h
 //  HTM
 //
-//  Created by Prathamesh N. Saraf on 11/29/15.
+//  Created by Prathamesh N. Saraf on 12/1/15.
 //  Copyright (c) 2015 Prathamesh N. Saraf. All rights reserved.
 //
 
@@ -13,12 +13,14 @@
 
 @interface TaskDetails : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * taskID;
-@property (nonatomic, retain) NSString * taskCategory;
 @property (nonatomic, retain) NSString * assignedBy;
 @property (nonatomic, retain) NSString * assignedTo;
-@property (nonatomic, retain) NSString * taskname;
 @property (nonatomic, retain) NSNumber * review;
+@property (nonatomic, retain) NSString * taskCategory;
+@property (nonatomic, retain) NSNumber * taskID;
+@property (nonatomic, retain) NSString * taskname;
+@property (nonatomic, retain) NSString * submitted;
+@property (nonatomic, retain) NSString * feedback;
 @property (nonatomic, retain) TaskInfo *task;
 
 @end

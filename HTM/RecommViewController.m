@@ -15,6 +15,7 @@
 
 @end
 
+NSMutableArray *filterarray;
 @implementation RecommViewController
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -39,6 +40,7 @@
     [self.recommTale setBackgroundColor:[UIColor clearColor]];
     
     self.title = @"Search Room Mates";
+
 
     // Do any additional setup after loading the view from its nib.
 }
@@ -166,4 +168,10 @@
     [self.view endEditing:YES];
 }
 
+-(BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    //[recommItem removeAllObjects];
+    
+    return YES;
+}
 @end

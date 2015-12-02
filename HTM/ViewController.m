@@ -125,6 +125,7 @@
             details.foodChoice = recieved[@"foodchoice"];
             details.drinking = recieved[@"drinking"];
             details.smoking = recieved[@"smoking"];
+
             
             NSArray *grps = recieved[@"groups"];
             for(NSDictionary *dict in grps) {

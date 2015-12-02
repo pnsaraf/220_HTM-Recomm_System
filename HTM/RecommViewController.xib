@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="actInd" destination="4qM-wL-lAy" id="A0W-pg-hOr"/>
                 <outlet property="recommTale" destination="uPD-Jx-Nom" id="CtK-F8-CuT"/>
+                <outlet property="searchBar" destination="uuO-je-yYj" id="FLP-G2-Ab6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -33,13 +34,19 @@
                     <rect key="frame" x="177" y="324" width="37" height="37"/>
                 </activityIndicatorView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="uPD-Jx-Nom">
-                    <rect key="frame" x="0.0" y="167" width="375" height="465"/>
+                    <rect key="frame" x="0.0" y="167" width="375" height="387"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="c7W-5v-hPO"/>
                         <outlet property="delegate" destination="-1" id="O9x-So-fOv"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9uI-KA-Gyj">
+                    <rect key="frame" x="164" y="600" width="48" height="30"/>
+                    <state key="normal" title="Search">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.66934974749999998" green="0.66934974749999998" blue="0.66934974749999998" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>

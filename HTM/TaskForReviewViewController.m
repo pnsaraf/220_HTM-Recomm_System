@@ -27,6 +27,8 @@
         det = _det;
         infoAray = [[NSMutableArray alloc] init];
         rev = flag;
+        submission = FALSE;
+        revCount = 0;
     }
     
     return self;
@@ -35,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    
+    self.title = @"Task Details";
     self.taskInfo.backgroundColor = [UIColor clearColor];
     
     for(UIView *view in self.view.subviews) {
@@ -46,6 +48,9 @@
         }
     }
     
+    
+    UITapGestureRecognizer *screentap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(screentapped)];
+    [self.view addGestureRecognizer:screentap];
     [self.taskInfo registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
 //    self.taskInfo set
     TaskInfo *info = det.task;
@@ -59,7 +64,7 @@
     self.name.text = det.taskname;
     
     CGSize size = self.parentScrollView.frame.size;
-    //size.height += 10;
+    size.height += 50;
     [self.parentScrollView setContentSize:size];
     
     [[self.feedback layer] setBorderColor:[UIColor blackColor].CGColor];
@@ -83,6 +88,10 @@
     
 }
 
+-(void)screentapped
+{
+    [self.view endEditing:YES];
+}
 
 -(void)getvalues:(TaskInfo *)info
 {
@@ -132,20 +141,24 @@
 -(void)imageTapped:(UIGestureRecognizer *)gst
 {
     UIImageView *img = (UIImageView *)gst.view;
-    
     BOOL flag = img.highlighted;
+    revCount = (flag) ? revCount : 0;
     for(UIView *view in self.view.subviews) {
         if([view isKindOfClass:[UIImageView class]]) {
             if(!flag) {
                 if(view.tag <= img.tag) {
                     UIImageView *image = (UIImageView *)view;
                     image.highlighted = YES;
+                    revCount++;
                 }
+
             } else {
                 if(view.tag >= img.tag) {
                     UIImageView *image = (UIImageView *)view;
                     image.highlighted = NO;
+                    revCount--;
                 }
+
             }
         }
     }
@@ -194,33 +207,43 @@
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
 {
     NSMutableArray *recommItem = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-    
-    
-    
-    TaskInfo *info = [NSEntityDescription insertNewObjectForEntityForName:@"TaskInfo" inManagedObjectContext:det.managedObjectContext];
-    
     AppDelegate *del = [UIApplication sharedApplication].delegate;
-   
-    [recommItem enumerateObjectsUsingBlock:^(NSDictionary *obj,NSUInteger ind,BOOL *stop){
-        info.items = ([obj[@"items"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"items"] ;
-        info.stove = ([obj[@"stove"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"stove"] ;
-        info.cookingPot = ([obj[@"cookingpot"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"cookingpot"] ;
-        info.kitchensink = ([obj[@"kitchensink"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"kitchensink"] ;
-        info.kitchenIsland = ([obj[@"platform"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"platform"] ;
-        info.kitchenFloor = ([obj[@"kitchenfloor"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"kitchenfloor"] ;
-        info.sink = ([obj[@"sink"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"sink"] ;
-        info.toiletSeat = ([obj[@"toiletseat"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"toiletseat"] ;
-        info.bathtub = ([obj[@"bathtub"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"bathtub"] ;
     
-    }];
-    
-    det.task = info;
-   
-    [del saveContext];
-    [self getvalues:info];
-    
-    //        NSArray *arr = [recommItem allKeys];
-    [self.taskInfo reloadData];
+    if(!submission) {
+        TaskInfo *info = [NSEntityDescription insertNewObjectForEntityForName:@"TaskInfo" inManagedObjectContext:det.managedObjectContext];
+        
+
+       
+        [recommItem enumerateObjectsUsingBlock:^(NSDictionary *obj,NSUInteger ind,BOOL *stop){
+            info.items = ([obj[@"items"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"items"] ;
+            info.stove = ([obj[@"stove"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"stove"] ;
+            info.cookingPot = ([obj[@"cookingpot"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"cookingpot"] ;
+            info.kitchensink = ([obj[@"kitchensink"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"kitchensink"] ;
+            info.kitchenIsland = ([obj[@"platform"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"platform"] ;
+            info.kitchenFloor = ([obj[@"kitchenfloor"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"kitchenfloor"] ;
+            info.sink = ([obj[@"sink"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"sink"] ;
+            info.toiletSeat = ([obj[@"toiletseat"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"toiletseat"] ;
+            info.bathtub = ([obj[@"bathtub"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"bathtub"] ;
+        
+        }];
+        
+        det.task = info;
+       
+        [del saveContext];
+        [self getvalues:info];
+        
+        //        NSArray *arr = [recommItem allKeys];
+        [self.taskInfo reloadData];
+    } else {
+        if(rev)
+            det.review = [NSNumber numberWithInt:revCount];
+        else {
+            det.submitted = @"YES";
+        }
+        
+        [del saveContext];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
     
     
 }
@@ -246,4 +269,35 @@
 }
 */
 
+- (IBAction)submit:(id)sender {
+    submission = TRUE;
+    
+    if(revCount <= 0 && rev) {
+        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Task not rated yet" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        submission = FALSE;
+        return;
+    }
+    [self.actInd startAnimating];
+    
+    NSString *reqBody = (rev) ? [NSString stringWithFormat:@"{\"review\":%ld,\"taskId\":\"%@\",\"feedback\":\"%@\"}",(long)revCount,det.taskID,self.feedback.text] : [NSString stringWithFormat:@"{\"taskId\":\"%@\"}",det.taskID];
+    
+    NSData *postData = [reqBody dataUsingEncoding:NSUTF8StringEncoding];
+    NSURL *url = (rev) ? [NSURL URLWithString:@"http://localhost:8081/review"] : [NSURL URLWithString:@"http://localhost:8081/submitTask"];
+    
+    if(request) {
+        request = nil;
+    }
+    
+    request = [[NSMutableURLRequest alloc] initWithURL:url];
+    
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    [request setHTTPBody:postData];
+    [request setValue:[NSString stringWithFormat:@"%lu",(unsigned long)[reqBody length]] forHTTPHeaderField:@"Content-length"];
+    
+    NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [con start];
+    
+}
 @end

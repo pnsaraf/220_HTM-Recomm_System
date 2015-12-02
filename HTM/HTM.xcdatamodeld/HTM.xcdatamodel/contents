@@ -7,7 +7,9 @@
     <entity name="TaskDetails" representedClassName="TaskDetails" syncable="YES">
         <attribute name="assignedBy" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="assignedTo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="feedback" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="review" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="submitted" optional="YES" attributeType="String" defaultValueString="NO" syncable="YES"/>
         <attribute name="taskCategory" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="taskID" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="taskname" optional="YES" attributeType="String" syncable="YES"/>
@@ -25,18 +27,21 @@
         <attribute name="toiletSeat" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="UserDetails" representedClassName="UserDetails" syncable="YES">
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="drinking" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="employed" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="foodChoice" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="meateaters" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="occupation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="smoking" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="TaskDetails" positionX="-162" positionY="27" width="128" height="148"/>
-        <element name="TaskInfo" positionX="97" positionY="189" width="128" height="178"/>
-        <element name="UserDetails" positionX="-155" positionY="212" width="128" height="148"/>
-        <element name="Groups" positionX="115" positionY="45" width="128" height="73"/>
+        <element name="Groups" positionX="-234" positionY="72" width="128" height="73"/>
+        <element name="TaskDetails" positionX="-387" positionY="18" width="128" height="178"/>
+        <element name="TaskInfo" positionX="-225" positionY="270" width="128" height="178"/>
+        <element name="UserDetails" positionX="-504" positionY="212" width="128" height="193"/>
     </elements>
 </model>

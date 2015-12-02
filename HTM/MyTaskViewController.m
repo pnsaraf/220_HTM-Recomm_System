@@ -39,7 +39,7 @@
                               initWithKey:@"taskID" ascending:NO];
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
     
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.review = 0 && SELF.assignedTo = %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"user"]];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.review = 0 && SELF.assignedTo = %@ && SELF.submitted = \"NO\"",[[NSUserDefaults standardUserDefaults] valueForKey:@"user"]];
     [fetchRequest setPredicate:pred];
     
     [fetchRequest setFetchBatchSize:20];
@@ -70,11 +70,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    NSError *error;
-    if(![[self fetchResultsController] performFetch:&error]) {
-        NSLog(@"Error in fecthing data");
-    }
-    
+
     [self.mytasktable registerNib:[UINib nibWithNibName:@"PendingTaskTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"Cell"];
     
     self.mytasktable.backgroundColor = [UIColor clearColor];
@@ -85,6 +81,19 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    NSError *error;
+    if(self.fetchResultsController) {
+        self.fetchResultsController = nil;
+    }
+    if(![[self fetchResultsController] performFetch:&error]) {
+        NSLog(@"Error in fecthing data");
+    }
+    
+    [self.mytasktable reloadData];
 }
 
 /*

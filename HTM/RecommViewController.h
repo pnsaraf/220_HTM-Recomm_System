@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RecommViewController : UIViewController<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface RecommViewController : UIViewController<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate,UISearchControllerDelegate>
 {
     NSMutableURLRequest *request;
     IBOutlet UIActivityIndicatorView *actInd;
     NSMutableArray *recommItem;
 }
 @property (strong, nonatomic) IBOutlet UITableView *recommTale;
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end

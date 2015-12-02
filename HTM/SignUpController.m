@@ -119,11 +119,11 @@ NSMutableArray *food, *gender;
         return;
     }
     
-    NSString *reqBody = [NSString stringWithFormat:@"{\"username\":\"%@\",\"password\":\"%@\",\"firstname\":\"%@\",\"lastname\":\"%@\",\"drinking\":\"%@\",\"smoking\":\"%@\",\"foodchoice\":\"%@\",\"meateaters\":\"%@\",\"gender\":\"%@\",\"occupation\":\"%@\",\"location\":\"%@\",\"age\":\"%@\",\"employed\":\"%@\"}",self.userName.text,self.password.text,self.firstName.text,self.lastName.text,self.drinking.text,[self.smoking titleForSegmentAtIndex:self.smoking.selectedSegmentIndex],self.foodChoice.text,[self.meateaters titleForSegmentAtIndex:self.meateaters.selectedSegmentIndex],self.gender.text,self.occupation.text,self.location.text,self.age.text,[self.employed titleForSegmentAtIndex:self.employed.selectedSegmentIndex]];
+    NSString *reqBody = [NSString stringWithFormat:@"{\"username\":\"%@\",\"password\":\"%@\",\"firstname\":\"%@\",\"lastname\":\"%@\",\"drinking\":\"%@\",\"smoking\":\"%@\",\"foodchoice\":\"%@\",\"meateaters\":\"%@\",\"gender\":\"%@\",\"occupation\":\"%@\",\"city\":\"%@\",\"age\":\"%@\",\"employed\":\"%@\"}",self.userName.text,self.password.text,self.firstName.text,self.lastName.text,self.drinking.text,[self.smoking titleForSegmentAtIndex:self.smoking.selectedSegmentIndex],self.foodChoice.text,[self.meateaters titleForSegmentAtIndex:self.meateaters.selectedSegmentIndex],self.gender.text,self.occupation.text,self.location.text,self.age.text,[self.employed titleForSegmentAtIndex:self.employed.selectedSegmentIndex]];
     
     NSData *postData = [reqBody dataUsingEncoding:NSUTF8StringEncoding];
     
-    request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://127.0.0.1:8081/addUser"]];
+    request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://localhost:8081/addUser"]];
     
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CreateTaskViewController : UIViewController
+@interface CreateTaskViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@property (strong, nonatomic) IBOutlet UITableView *createTask;
 
 @end

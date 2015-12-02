@@ -24,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3eg-fa-pd2">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="566"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="540"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEV-3X-8fM">
                             <rect key="frame" x="23" y="8" width="97" height="41"/>
@@ -73,7 +73,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Feedback" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XY2-js-iX9">
-                            <rect key="frame" x="23" y="461" width="76" height="21"/>
+                            <rect key="frame" x="23" y="454" width="76" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -83,7 +83,7 @@
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                         <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="56r-lR-TKK">
-                            <rect key="frame" x="168" y="438" width="185" height="68"/>
+                            <rect key="frame" x="168" y="433" width="185" height="68"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -103,26 +103,35 @@
                     </subviews>
                 </scrollView>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rating for task" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDc-8M-zgB">
-                    <rect key="frame" x="24" y="606" width="112" height="21"/>
+                    <rect key="frame" x="24" y="564" width="112" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blackStar.png" highlightedImage="whiteStart.png" translatesAutoresizingMaskIntoConstraints="NO" id="D8u-x0-7HW">
-                    <rect key="frame" x="165" y="602" width="33" height="30"/>
+                    <rect key="frame" x="165" y="560" width="33" height="30"/>
                 </imageView>
                 <imageView hidden="YES" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blackStar.png" highlightedImage="whiteStart.png" translatesAutoresizingMaskIntoConstraints="NO" id="mgP-J5-FUz">
-                    <rect key="frame" x="206" y="602" width="30" height="30"/>
+                    <rect key="frame" x="206" y="560" width="30" height="30"/>
                 </imageView>
                 <imageView hidden="YES" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blackStar.png" highlightedImage="whiteStart.png" translatesAutoresizingMaskIntoConstraints="NO" id="4gb-i7-9Z2">
-                    <rect key="frame" x="244" y="602" width="30" height="30"/>
+                    <rect key="frame" x="244" y="560" width="30" height="30"/>
                 </imageView>
                 <imageView hidden="YES" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blackStar.png" highlightedImage="whiteStart.png" translatesAutoresizingMaskIntoConstraints="NO" id="3F1-w2-G26">
-                    <rect key="frame" x="282" y="602" width="30" height="30"/>
+                    <rect key="frame" x="282" y="560" width="30" height="30"/>
                 </imageView>
                 <imageView hidden="YES" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blackStar.png" highlightedImage="whiteStart.png" translatesAutoresizingMaskIntoConstraints="NO" id="f5Y-Gw-naL">
-                    <rect key="frame" x="320" y="602" width="30" height="30"/>
+                    <rect key="frame" x="320" y="560" width="30" height="30"/>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZw-1c-5tr">
+                    <rect key="frame" x="158" y="614" width="49" height="30"/>
+                    <state key="normal" title="Submit">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="submit:" destination="-1" eventType="touchUpInside" id="IbX-dr-S26"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.66934974749999998" green="0.66934974749999998" blue="0.66934974749999998" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>

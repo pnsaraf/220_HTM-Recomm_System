@@ -18,6 +18,8 @@
     IBOutlet UILabel *feedbacklabel;
     IBOutlet UILabel *ratinglabel;
     BOOL rev;
+    BOOL submission;
+    NSInteger revCount;
 }
 
 
@@ -31,5 +33,6 @@
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *actInd;
 
 @property (strong, nonatomic) IBOutlet UITextView *feedback;
+- (IBAction)submit:(id)sender;
 
 @end

@@ -13,6 +13,7 @@
 #import "RecommViewController.h"
 #import "MyTaskViewController.h"
 #import "GroupsViewController.h"
+#import "CreateTaskViewController.h"
 
 @interface PendingTaskViewController ()
 
@@ -48,7 +49,7 @@
                               initWithKey:@"taskID" ascending:NO];
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
     
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.review = 0 && SELF.assignedTo != %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"user"]];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.review = 0 && SELF.assignedTo != %@ && SELF.submitted = \"YES\"",[[NSUserDefaults standardUserDefaults] valueForKey:@"user"]];
     [fetchRequest setPredicate:pred];
     
     [fetchRequest setFetchBatchSize:20];
@@ -82,14 +83,16 @@
     [self.navigationController pushViewController:grps animated:YES];
 }
 
+- (IBAction)createTaskTapped:(id)sender {
+    
+    CreateTaskViewController *create = [[CreateTaskViewController alloc] initWithNibName:@"CreateTaskViewController" bundle:[NSBundle mainBundle]];
+    
+    [self.navigationController pushViewController:create animated:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
-    NSError *error;
-    if(![[self fetchResultsController] performFetch:&error]) {
-        NSLog(@"Error in fecthing data");
-    }
     
     
     [self.taskList registerNib:[UINib nibWithNibName:@"PendingTaskTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"Cell"];
@@ -110,6 +113,19 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    NSError *error;
+    if(self.fetchResultsController) {
+        self.fetchResultsController = nil;
+    }
+    if(![[self fetchResultsController] performFetch:&error]) {
+        NSLog(@"Error in fecthing data");
+    }
+    
+    [self.taskList reloadData];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -155,11 +171,19 @@
             det.taskCategory = obj[@"taskCategory"];
             det.taskname = obj[@"taskName"];
             det.review = obj[@"review"];
+            det.submitted = obj[@"submitted"];
+            det.feedback = ([obj[@"feedback"] isKindOfClass:[NSNull class]]) ? NULL : obj[@"feedback"];
             
             needRefresh = TRUE;
             
-        } else if ([[arr filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.taskID = %@",obj[@"taskId"]]] count]) {
+        } else if ([[arr filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.taskID = %@ && self.submitted = 'NO'",obj[@"taskId"]]] count]) {
+            TaskDetails *det = [[arr filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.taskID = %@ && self.submitted = 'NO'",obj[@"taskId"]]] objectAtIndex:0];
+            if([det.submitted isEqual:@"NO"] && [obj[@"submitted"] isEqual:@"YES"]){
+                det.submitted = @"YES";
+                needRefresh = TRUE;
+            }
             
+
         }
     }];
     
