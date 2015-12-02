@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface NewTaskViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@class Groups;
+@interface NewTaskViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UIGestureRecognizerDelegate>
 {
-    
+    NSString *category;
+    NSMutableArray *groupList;
+    NSMutableURLRequest *request;
+    NSMutableArray *infoArrayResult;
+    Groups *selectedGrp;
 }
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withTaskCategory:(NSString *) cat;
@@ -19,5 +23,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *assignedTo;
 @property (strong, nonatomic) IBOutlet UILabel *category;
 @property (strong, nonatomic) IBOutlet UITableView *taskInfo;
+@property (strong, nonatomic) IBOutlet UITextField *taskName;
+@property (strong, nonatomic) IBOutlet UITextField *createTask;
+@property (strong, nonatomic) IBOutlet UITextField *groups;
+- (IBAction)createTask:(id)sender;
 
 @end

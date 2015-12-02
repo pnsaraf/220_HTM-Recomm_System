@@ -78,7 +78,7 @@ NSMutableArray *filterarray;
         det = [array objectAtIndex:0];
     }
 
-    NSString *reqBody = [NSString stringWithFormat:@"{\"username\":\"%@\"}",@"5710844"];
+    NSString *reqBody = [NSString stringWithFormat:@"{\"username\":\"%@\"}",[[NSUserDefaults standardUserDefaults] valueForKey:@"user"]];
     
     NSData *postData = [reqBody dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -128,7 +128,7 @@ NSMutableArray *filterarray;
     [cell setSelectionStyle:UITableViewCellSelectionStyleDefault];
     [cell setBackgroundColor:[UIColor clearColor]];
 
-    cell.textLabel.text = [recommItem objectAtIndex:indexPath.row][@"username"];
+    cell.textLabel.text = [recommItem objectAtIndex:indexPath.row][@"firstname"];
     
     
     return cell;
@@ -145,6 +145,7 @@ NSMutableArray *filterarray;
 {
     recommItem = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     
+    recommItem = [recommItem filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(firstname).length > 0"]];
     
 //        NSArray *arr = [recommItem allKeys];
     [self.recommTale reloadData];

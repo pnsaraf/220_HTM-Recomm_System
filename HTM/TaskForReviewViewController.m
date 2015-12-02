@@ -64,7 +64,7 @@
     self.name.text = det.taskname;
     
     CGSize size = self.parentScrollView.frame.size;
-    size.height += 50;
+    size.height += 100;
     [self.parentScrollView setContentSize:size];
     
     [[self.feedback layer] setBorderColor:[UIColor blackColor].CGColor];
