@@ -16,6 +16,7 @@
     UITapGestureRecognizer *gest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(checkboxTapped:)];
     
     //[self.imageView addGestureRecognizer:gest];
+//    [self.contentView setBackgroundColor:[UIColor colorWithRed:0.9 green:0.86 blue:0.8 alpha:1]];
 }
 
 

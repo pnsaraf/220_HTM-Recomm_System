@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "UserDetails.h"
 #import "UserDetViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface RecommViewController ()
 
@@ -41,6 +42,13 @@ NSMutableArray *filterarray;
     
     self.title = @"Search Room Mates";
 
+    [self.view setBackgroundColor:[UIColor colorWithRed:0.79 green:0.69 blue:0.52 alpha:1]];
+    
+    [search setTitleColor:[UIColor colorWithRed:0.9 green:0.86 blue:0.8 alpha:1] forState:UIControlStateNormal];
+    
+    [search.layer setBorderWidth:1.0f];
+    [search.layer setCornerRadius:7.0f];
+    [search.layer setBorderColor:[UIColor colorWithRed:0.4 green:0 blue:0 alpha:1].CGColor];
 
     // Do any additional setup after loading the view from its nib.
 }

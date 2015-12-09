@@ -58,6 +58,7 @@
         [self getvalues:info];
     }
     
+    [self.view setBackgroundColor:[UIColor colorWithRed:0.79 green:0.69 blue:0.52 alpha:1]];
     
     self.assignedTo.text = det.assignedTo;
     self.category.text = det.taskCategory;
@@ -82,6 +83,12 @@
             }
         }
     }
+    
+    [submit setTitleColor:[UIColor colorWithRed:0.9 green:0.86 blue:0.8 alpha:1] forState:UIControlStateNormal];
+    
+    [submit.layer setBorderWidth:1.0f];
+    [submit.layer setCornerRadius:7.0f];
+    [submit.layer setBorderColor:[UIColor colorWithRed:0.4 green:0 blue:0 alpha:1].CGColor];
     
 //    self.parentScrollView ca
     // Do any additional setup after loading the view from its nib.
@@ -195,8 +202,10 @@
     }
     
     cell.textLabel.text = [[infoAray objectAtIndex:indexPath.row] uppercaseString];
+    cell.textLabel.textColor = [UIColor  colorWithRed:0.4 green:0 blue:0 alpha:1];
     cell.detailTextLabel.text = [infoDict objectForKey:[infoAray objectAtIndex:indexPath.row]];
-    [cell.detailTextLabel setTextColor:[UIColor blackColor]];
+    cell.detailTextLabel.textColor = [UIColor colorWithRed:0.4 green:0 blue:0 alpha:1];
+//    [cell.detailTextLabel setTextColor:[UIColor blackColor]];
     cell.backgroundColor = [UIColor clearColor];
     
     return cell;

@@ -59,6 +59,8 @@
     UIBarButtonItem *logout = [[UIBarButtonItem alloc] initWithTitle:@"Create" style:UIBarButtonItemStylePlain target:self action:@selector(createGroupTapped:)];
     self.navigationItem.rightBarButtonItem = logout;
     
+    [self.view setBackgroundColor:[UIColor colorWithRed:0.79 green:0.69 blue:0.52 alpha:1]];
+    
     self.title = @"Groups info";
 }
 
@@ -166,6 +168,7 @@
     cell.backgroundColor = [UIColor clearColor];
     Groups *det = [self.fetchResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = det.groupName;
+    cell.textLabel.textColor = [UIColor colorWithRed:0.4 green:0 blue:0 alpha:1];
     return cell;
 }
 

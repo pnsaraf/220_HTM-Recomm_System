@@ -13,6 +13,7 @@
     NSMutableURLRequest *request;
     IBOutlet UIActivityIndicatorView *actInd;
     NSMutableArray *recommItem;
+    IBOutlet UIButton *search;
 }
 @property (strong, nonatomic) IBOutlet UITableView *recommTale;
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;

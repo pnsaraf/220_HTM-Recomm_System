@@ -7,6 +7,7 @@
 //
 
 #import "SignUpController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface SignUpController ()
 
@@ -46,11 +47,21 @@ NSMutableArray *food, *gender;
     UITapGestureRecognizer *gest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(screenTapped:)];
     
     [self.masterScrollView addGestureRecognizer:gest];
+    [self.view setBackgroundColor:[UIColor colorWithRed:0.79 green:0.69 blue:0.52 alpha:1]];
    // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:)
 //                                                 name:UIKeyboardDidShowNotification object:nil];
 //    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:)
 //                                                 name:UIKeyboardWillHideNotification object:nil];
 //    // Do any additional setup after loading the view from its nib.
+    
+    
+    [_register setTitleColor:[UIColor colorWithRed:0.9 green:0.86 blue:0.8 alpha:1] forState:UIControlStateNormal];
+    
+    [_register.layer setBorderWidth:1.0f];
+    [_register.layer setCornerRadius:7.0f];
+    [_register.layer setBorderColor:[UIColor colorWithRed:0.4 green:0 blue:0 alpha:1].CGColor];
+    
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -132,6 +143,7 @@ NSMutableArray *food, *gender;
     
     NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     [con start];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data

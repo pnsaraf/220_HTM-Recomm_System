@@ -26,6 +26,8 @@ NSMutableArray *categories;
     [self.createTask setBackgroundColor:[UIColor clearColor]];
     
     categories = [NSMutableArray arrayWithObjects:@"COOKING",@"REST ROOMS",@"KITCHEN", nil];
+    
+    [self.view setBackgroundColor:[UIColor colorWithRed:0.79 green:0.69 blue:0.52 alpha:1]];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -57,6 +59,7 @@ NSMutableArray *categories;
     
     cell.textLabel.text = [categories objectAtIndex:indexPath.row];
     [cell setBackgroundColor:[UIColor clearColor]];
+    cell.textLabel.textColor = [UIColor colorWithRed:0.4 green:0 blue:0 alpha:1];
     return cell;
 }
 

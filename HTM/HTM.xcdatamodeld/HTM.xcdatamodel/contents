@@ -39,9 +39,9 @@
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Groups" positionX="-234" positionY="72" width="128" height="73"/>
-        <element name="TaskDetails" positionX="-387" positionY="18" width="128" height="178"/>
-        <element name="TaskInfo" positionX="-225" positionY="270" width="128" height="178"/>
-        <element name="UserDetails" positionX="-504" positionY="212" width="128" height="193"/>
+        <element name="Groups" positionX="-839" positionY="18" width="128" height="73"/>
+        <element name="TaskDetails" positionX="-468" positionY="-18" width="128" height="178"/>
+        <element name="TaskInfo" positionX="-225" positionY="108" width="128" height="178"/>
+        <element name="UserDetails" positionX="-470" positionY="180" width="128" height="193"/>
     </elements>
 </model>

@@ -76,6 +76,7 @@
     self.mytasktable.backgroundColor = [UIColor clearColor];
     
     self.title = @"My tasks";
+    [self.view setBackgroundColor:[UIColor colorWithRed:0.79 green:0.69 blue:0.52 alpha:1]];
 }
 
 - (void)didReceiveMemoryWarning {

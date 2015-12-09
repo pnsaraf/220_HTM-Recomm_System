@@ -36,7 +36,9 @@
     [self.userDet registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
     // Do any additional setup after loading the view from its nib.
     
-       self.title = @"User Details";
+    self.title = @"User Details";
+    
+    [self.view setBackgroundColor:[UIColor colorWithRed:0.79 green:0.69 blue:0.52 alpha:1]];
     
 }
 

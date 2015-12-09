@@ -54,13 +54,18 @@
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfL-4k-GtV">
                     <rect key="frame" x="148" y="434" width="79" height="30"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <state key="normal" title="Login"/>
                     <connections>
                         <action selector="loginPressed:" destination="-1" eventType="touchUpInside" id="nSg-vR-eFu"/>
                     </connections>
                 </button>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="cNL-9W-Upw">
+                    <rect key="frame" x="173" y="284" width="37" height="37"/>
+                </activityIndicatorView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KOA-Zc-zR7">
-                    <rect key="frame" x="164" y="500" width="55" height="30"/>
+                    <rect key="frame" x="143" y="500" width="89" height="35"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <state key="normal" title="Sign Up">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -68,9 +73,6 @@
                         <action selector="signUpPressed:" destination="-1" eventType="touchUpInside" id="ywk-gL-gI6"/>
                     </connections>
                 </button>
-                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="cNL-9W-Upw">
-                    <rect key="frame" x="173" y="284" width="37" height="37"/>
-                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="0.7565498737373737" green="0.7565498737373737" blue="0.7565498737373737" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

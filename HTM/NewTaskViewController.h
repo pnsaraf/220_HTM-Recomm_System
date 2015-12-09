@@ -15,6 +15,7 @@
     NSMutableURLRequest *request;
     NSMutableArray *infoArrayResult;
     Groups *selectedGrp;
+    IBOutlet UIButton *create;
 }
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withTaskCategory:(NSString *) cat;

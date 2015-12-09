@@ -11,6 +11,7 @@
 @interface SignUpController : UIViewController <NSURLConnectionDelegate,UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate> {
     NSMutableURLRequest *request;
     UITextField *activeTextField;
+    IBOutlet UIButton *_register;
 }
 @property (strong, nonatomic) IBOutlet UITextField *firstName;
 @property (strong, nonatomic) IBOutlet UITextField *lastName;

@@ -17,7 +17,11 @@
     UIRefreshControl *refcontrol;
     IBOutlet UIActivityIndicatorView *actIndicator;
     NSMutableURLRequest *request;
+    IBOutlet UIButton *grps;
+    IBOutlet UIButton *srchRoomies;
+    IBOutlet UIButton *createTask;
 }
+@property (strong, nonatomic) IBOutlet UIButton *tasks;
 
 @property (strong, nonatomic) IBOutlet UITableView *taskList;
 @property (strong,nonatomic) NSFetchedResultsController *fetchResultsController;

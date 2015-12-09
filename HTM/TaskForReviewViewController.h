@@ -17,6 +17,7 @@
     NSMutableURLRequest *request;
     IBOutlet UILabel *feedbacklabel;
     IBOutlet UILabel *ratinglabel;
+    IBOutlet UIButton *submit;
     BOOL rev;
     BOOL submission;
     NSInteger revCount;

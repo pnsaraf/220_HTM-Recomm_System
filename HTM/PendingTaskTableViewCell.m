@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+        [self.contentView setBackgroundColor:[UIColor colorWithRed:0.9 green:0.86 blue:0.8 alpha:1]];
 }
 
 

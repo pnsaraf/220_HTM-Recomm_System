@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="actInd" destination="4qM-wL-lAy" id="A0W-pg-hOr"/>
                 <outlet property="recommTale" destination="uPD-Jx-Nom" id="CtK-F8-CuT"/>
+                <outlet property="search" destination="9uI-KA-Gyj" id="31s-CF-cxd"/>
                 <outlet property="searchBar" destination="uuO-je-yYj" id="FLP-G2-Ab6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -25,9 +26,9 @@
                     </connections>
                 </searchBar>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Recommendations" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zWq-aU-wgy">
-                    <rect key="frame" x="20" y="124" width="145" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="20" y="124" width="169" height="21"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="4qM-wL-lAy">
@@ -42,7 +43,7 @@
                     </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9uI-KA-Gyj">
-                    <rect key="frame" x="164" y="600" width="48" height="30"/>
+                    <rect key="frame" x="146" y="600" width="98" height="33"/>
                     <state key="normal" title="Search">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>

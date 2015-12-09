@@ -14,6 +14,7 @@
 #import "MyTaskViewController.h"
 #import "GroupsViewController.h"
 #import "CreateTaskViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface PendingTaskViewController ()
 
@@ -107,7 +108,31 @@
     
     refcontrol = [[UIRefreshControl alloc] initWithFrame:self.taskList.frame];
     [self.taskList addSubview:refcontrol];
+    
     actIndicator.backgroundColor = [UIColor clearColor];
+    
+    [self.view setBackgroundColor:[UIColor colorWithRed:0.79 green:0.69 blue:0.52 alpha:1]];
+    
+    [grps.layer setBorderWidth:1.0f];
+    [grps.layer setCornerRadius:7.0f];
+    [grps.layer setBorderColor:[UIColor colorWithRed:0.4 green:0 blue:0 alpha:1].CGColor];
+
+    [srchRoomies.layer setBorderWidth:1.0f];
+    [srchRoomies.layer setCornerRadius:7.0f];
+    [srchRoomies.layer setBorderColor:[UIColor colorWithRed:0.4 green:0 blue:0 alpha:1].CGColor];
+
+    [self.tasks.layer setBorderWidth:1.0f];
+    [self.tasks.layer setCornerRadius:7.0f];
+    [self.tasks.layer setBorderColor:[UIColor colorWithRed:0.4 green:0 blue:0 alpha:1].CGColor];
+
+    [createTask.layer setBorderWidth:1.0f];
+    [createTask.layer setCornerRadius:7.0f];
+    [createTask.layer setBorderColor:[UIColor colorWithRed:0.4 green:0 blue:0 alpha:1].CGColor];
+    
+    [grps setTitleColor:[UIColor colorWithRed:0.9 green:0.86 blue:0.8 alpha:1] forState:UIControlStateNormal];
+    [createTask setTitleColor:[UIColor colorWithRed:0.9 green:0.86 blue:0.8 alpha:1] forState:UIControlStateNormal];
+    [self.tasks setTitleColor:[UIColor colorWithRed:0.9 green:0.86 blue:0.8 alpha:1] forState:UIControlStateNormal];
+    [srchRoomies setTitleColor:[UIColor colorWithRed:0.9 green:0.86 blue:0.8 alpha:1] forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {

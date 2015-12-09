@@ -7,7 +7,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PendingTaskViewController">
             <connections>
                 <outlet property="actIndicator" destination="nO5-Ie-gLe" id="8i0-FB-bFP"/>
+                <outlet property="createTask" destination="mxT-fe-eMm" id="jEN-ul-vnk"/>
+                <outlet property="grps" destination="UhH-5p-sIX" id="hJ2-K9-Rmb"/>
+                <outlet property="srchRoomies" destination="6ae-oa-hON" id="ZX4-zY-3UA"/>
                 <outlet property="taskList" destination="iOY-y2-zNK" id="FNi-FT-zJ1"/>
+                <outlet property="tasks" destination="c7U-D4-Whw" id="V90-nV-zfU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,9 +21,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UhH-5p-sIX">
-                    <rect key="frame" x="33" y="105" width="51" height="30"/>
+                    <rect key="frame" x="15" y="105" width="79" height="33"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                     <state key="normal" title="Groups">
-                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -35,10 +40,10 @@
                     </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7U-D4-Whw">
-                    <rect key="frame" x="285" y="105" width="57" height="30"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                    <rect key="frame" x="274" y="105" width="88" height="33"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                     <state key="normal" title="My Task">
-                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="mytaskPressed:" destination="-1" eventType="touchUpInside" id="kAU-3F-vfP"/>
@@ -50,9 +55,10 @@
                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </activityIndicatorView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ae-oa-hON">
-                    <rect key="frame" x="131" y="105" width="113" height="30"/>
+                    <rect key="frame" x="112" y="105" width="150" height="33"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                     <state key="normal" title="Search Roomies">
-                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -60,13 +66,14 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome Prathamesh" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1D-hF-kXZ">
-                    <rect key="frame" x="33" y="76" width="167" height="21"/>
-                    <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="40" y="72" width="196" height="21"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mxT-fe-eMm">
-                    <rect key="frame" x="147" y="599" width="81" height="30"/>
+                    <rect key="frame" x="132" y="599" width="111" height="39"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <state key="normal" title="Create Task">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -75,9 +82,9 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.6693497474747474" green="0.6693497474747474" blue="0.6693497474747474" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.67000000000000004" alpha="1" colorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <point key="canvasLocation" x="279.5" y="262.5"/>
+            <point key="canvasLocation" x="93.5" y="161.5"/>
         </view>
     </objects>
 </document>

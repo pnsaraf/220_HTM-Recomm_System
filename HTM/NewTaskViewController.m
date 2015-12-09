@@ -10,6 +10,7 @@
 #import "NewTaskTableViewCell.h"
 #import "Groups.h"
 #import "AppDelegate.h"
+#include <QuartzCore/QuartzCore.h>
 
 @interface NewTaskViewController ()
 
@@ -76,6 +77,14 @@ NSMutableArray *taskInfo;
     [self.view addGestureRecognizer:gest];
     gest.cancelsTouchesInView = NO;
     
+    [self.view setBackgroundColor:[UIColor colorWithRed:0.79 green:0.69 blue:0.52 alpha:1]];
+    
+    [create setTitleColor:[UIColor colorWithRed:0.9 green:0.86 blue:0.8 alpha:1] forState:UIControlStateNormal];
+    
+    [create.layer setBorderWidth:1.0f];
+    [create.layer setCornerRadius:7.0f];
+    [create.layer setBorderColor:[UIColor colorWithRed:0.4 green:0 blue:0 alpha:1].CGColor];
+    
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -119,6 +128,7 @@ NSMutableArray *taskInfo;
     [cell setSelectionStyle:UITableViewCellEditingStyleNone];
     cell.infoItem.text = [taskInfo objectAtIndex:indexPath.row];
     [cell setBackgroundColor:[UIColor clearColor]];
+
     cell.imageView.tag = indexPath.row;
     return cell;
 }
